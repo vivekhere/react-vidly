@@ -11,15 +11,9 @@ class Movies extends Component {
     movies: [],
     genres: [],
     currentPage: 1,
-    currentGenre: "All Genres",
     pageSize: 4,
   };
 
-  // Here we will get the movies and genres from the server
-  // We should also initialize the movies and genres to empty array because it
-  // is going to take some time to get the data from the server during this time
-  // we want to make sure that movies and genres are not undefined otherwise
-  // we are going to get an error during runtime.
   componentDidMount() {
     this.setState({ movies: getMovies(), genres: getGenres() });
   }
@@ -42,7 +36,7 @@ class Movies extends Component {
   };
 
   handleGenreSelect = (genre) => {
-    console.log(genre);
+    this.setState({ selectedGenre: genre });
   };
 
   render() {
@@ -58,6 +52,7 @@ class Movies extends Component {
         <div className="col-3">
           <ListGroup
             items={this.state.genres}
+            selectedItem={this.state.selectedGenre}
             onItemSelect={this.handleGenreSelect}
           />
         </div>
