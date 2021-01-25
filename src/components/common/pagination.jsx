@@ -27,8 +27,6 @@ const Pagination = (props) => {
   );
 };
 
-// After we define our component we need to add a new property to it and with
-// this property we define the typechecking requirements for this component.
 Pagination.propTypes = {
   itemsCount: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,
