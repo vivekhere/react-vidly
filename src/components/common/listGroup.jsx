@@ -14,11 +14,17 @@ const ListGroup = (props) => {
   );
 };
 
-// Inorder to remove coupling from our list group we will pass two more pass
-// for our properties _id and name.
-// With this instead of using the dot notation to access properties we will use
-// the bracket notation to access properties dynamically
-// With this we will no longer be coupled to genre and we can use this ListGroup
-// with any kind of lists.
+ListGroup.defaultProps = {
+  textProperty: "name",
+  valueProperty: "_id",
+};
+
+// Previously we added 2 new props to our ListGroup to make it more flexible
+// However, these 2 additional props makes the interface of this component a
+// little bit more complex.
+// The fewer props we have to pass to our component the easier it is to use.
+// To solve this problem we can set the textProperty and valueProperty using
+// defaultProps with this we longer have to pass the 2 properties as props to
+// this component.
 
 export default ListGroup;
