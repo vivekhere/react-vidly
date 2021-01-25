@@ -34,9 +34,6 @@ class Movies extends Component {
 
     if (count === 0) return <p>There are no movies in the database.</p>;
 
-    // We need to rename the the movies array in state object to allMovies
-    // because it will cause an error (duplicate error) as we are using a
-    // constant variable movies here.
     const movies = paginate(allMovies, currentPage, pageSize);
 
     return (
