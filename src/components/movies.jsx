@@ -15,7 +15,14 @@ class Movies extends Component {
   };
 
   componentDidMount() {
-    this.setState({ movies: getMovies(), genres: getGenres() });
+    // Here we are adding a new genre in the genres array with property name "All Genres"
+    // We don't need to set the id property for this new genre because this is not
+    // a valid genre in the database, this is just an item on top of the list.
+    const genres = [{ name: "All Genres" }, ...getGenres()];
+
+    // this.setState({ movies: getMovies(), genres: getGenres() });
+    // We will now replace the getGenres() with the new genres constant created.
+    this.setState({ movies: getMovies(), genres });
   }
 
   handleDelete = (movie) => {
@@ -35,8 +42,11 @@ class Movies extends Component {
     this.setState({ currentPage: page });
   };
 
+  // Here we set the currentPage: 1
+  // This will bring us to the first page when we select different genre or else
+  // we will be on the same page as on the previous genre
   handleGenreSelect = (genre) => {
-    this.setState({ selectedGenre: genre });
+    this.setState({ selectedGenre: genre, currentPage: 1 });
   };
 
   render() {
@@ -50,9 +60,13 @@ class Movies extends Component {
 
     if (count === 0) return <p>There are no movies in the database.</p>;
 
-    const filtered = selectedGenre
-      ? allMovies.filter((m) => m.genre._id === selectedGenre._id)
-      : allMovies;
+    // We also need to change the condition to selectedGenre && selectedGenre._id
+    // because the previous condition will filter out all genres because our
+    // 'All Genres' property does not have an id.
+    const filtered =
+      selectedGenre && selectedGenre._id
+        ? allMovies.filter((m) => m.genre._id === selectedGenre._id)
+        : allMovies;
 
     const movies = paginate(filtered, currentPage, pageSize);
 
