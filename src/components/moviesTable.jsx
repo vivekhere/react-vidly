@@ -1,10 +1,3 @@
-// Raising the sort event
-
-// we will handle the onCLick event for each of the table headings and raise the
-// onSort event and in the movies component we need to handle this onSort event
-// onSort is the function reference or a reference to an event handler in the
-// movies component
-
 import React from "react";
 import Like from "./common/like";
 
