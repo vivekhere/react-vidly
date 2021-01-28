@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import TableHeader from "./common/tableHeader";
 import Like from "./common/like";
+import TableBody from "./common/tableBody";
 
 class MoviesTable extends Component {
-  // This column property does not have to be part of the state because it is
-  // not going to change throughout the lifecycle of the component
   columns = [
     { path: "title", label: "Title" },
     { path: "genre.name", label: "Genre" },
@@ -13,10 +12,6 @@ class MoviesTable extends Component {
     { key: "like" },
     { key: "delete" },
   ];
-  // since path property is used as a unique key and like and delete do not have
-  // path property this will generate an error
-  // So we will pass a key property that can be used as a unique key in absence
-  // of path property
 
   render() {
     const { movies, onDelete, onLike, onSort, sortColumn } = this.props;
@@ -28,6 +23,7 @@ class MoviesTable extends Component {
           sortColumn={sortColumn}
           onSort={onSort}
         />
+        <TableBody data={movies} />
         <tbody>
           {movies.map((movie) => (
             <tr key={movie._id}>
