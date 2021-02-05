@@ -23,8 +23,7 @@ class LoginForm extends Component {
     e.preventDefault();
 
     const errors = this.validate();
-    console.log(errors);
-    this.setState({ errors });
+    this.setState({ errors: errors || {} });
     if (errors) return;
 
     console.log("Submitted");
@@ -37,7 +36,7 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { account } = this.state;
+    const { account, errors } = this.state;
 
     return (
       <div>
@@ -47,12 +46,14 @@ class LoginForm extends Component {
             name="username"
             value={account.username}
             label="Username"
+            errors={errors.username}
             onChange={this.handleChange}
           />
           <Input
             name="password"
             value={account.password}
             label="Password"
+            errors={errors.password}
             onChange={this.handleChange}
           />
           <button className="btn btn-primary">Login</button>
