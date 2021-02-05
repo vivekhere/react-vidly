@@ -39,5 +39,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-// NavLink will automatically apply the active class to the item which is active.
