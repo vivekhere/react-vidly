@@ -16,8 +16,8 @@ export function getMovie(movieId) {
 }
 
 export function saveMovie(movie) {
+  // if movie already available -> update
   if (movie._id) {
-    // if movie already available -> update
     const body = { ...movie };
     delete body._id;
     return http.put(movieUrl(movie._id), body);
